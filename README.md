@@ -6,6 +6,7 @@
 
 |-Wiktor Piwowar(Lider)<br>
 |-Mateusz Serafin<br>
+|-Łukasz Sondej<br>
 ...
 
 ### Technologię
