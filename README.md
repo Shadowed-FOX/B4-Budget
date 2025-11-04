@@ -4,8 +4,8 @@
 
 ### Zespół
 
-|-Osoba 1(Lider)<br>
-|-Osoba 2<br>
+|-Wiktor Piwowar(Lider)<br>
+|-Mateusz Serafin<br>
 ...
 
 ### Technologię
