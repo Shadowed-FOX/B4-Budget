@@ -12,7 +12,10 @@
 ### Technologię
 
 |-Docker<br>
-...
+|-Next JS<br>
+|-Nest.js<br>
+|-Prisma<br>
+|-PostgreSQL<br>
 
 ### Struktura projektu
 ### Dokumentacja
