@@ -7,9 +7,10 @@
 |-Wiktor Piwowar(Lider)<br>
 |-Mateusz Serafin<br>
 |-Łukasz Sondej<br>
-...
+|-Dominik Delimata<br>
+|-Damian Bełżek<br>
 
-### Technologię
+### Technologie
 
 |-Docker<br>
 |-Next JS<br>
