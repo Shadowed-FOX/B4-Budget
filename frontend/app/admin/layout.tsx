@@ -1,16 +1,15 @@
 import React from "react";
-import Link from "next/link";
 
-export default function UserLayout({
+export default function AdminLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html>
 			<body>
 				<div style={{ padding: 16 }}>
-					<nav style={{ marginBottom: 12 }}>
-						<Link href="/">Dashboard</Link> | <Link href="/user/budget">Budget</Link>
-					</nav>
+					<header style={{ marginBottom: 12 }}>
+						<h2>Admin</h2>
+					</header>
 					<main>{children}</main>
 				</div>
 			</body>
