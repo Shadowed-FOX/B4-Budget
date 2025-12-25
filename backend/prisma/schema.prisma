@@ -1,15 +1,75 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Roles {
+  role_id   Int    @id
+  role_name String @db.VarChar(100)
+  users     Users[]
+}
+
+model Users {
+  user_id      Int      @id @default(autoincrement())
+  role_id      Int
+  role         Roles     @relation(fields: [role_id], references: [role_id])
+  name         String   @db.VarChar(60)
+  surname      String   @db.VarChar(100)
+  email        String   @unique @db.VarChar(255)
+  password     String   @db.VarChar(256)
+  created_on   DateTime @default(now()) @db.Timestamp(0)
+  goals        Goals[]
+  transactions Transactions[]
+  Budgets Budgets[]
+}
+
+model TransactionTypes {
+  type_id      Int           @id
+  type_name    String        @db.VarChar(150)
+  transactions Transactions[]
+}
+
+model Categories {
+  category_id   Int           @id
+  category_name String       @db.VarChar(150)
+  weight        Int
+  transactions  Transactions[]
+}
+
+model Goals {
+  goal_id      Int           @id @default(autoincrement())
+  user_id      Int
+  user         Users          @relation(fields: [user_id], references: [user_id])
+  goal_name    String        @db.VarChar(250)
+  goal_amount  Decimal       @db.Decimal(10, 2)
+  deadline     DateTime      @db.Date
+  transactions Transactions[]
+}
+
+model Transactions {
+  transaction_id   Int             @id @default(autoincrement())
+  user_id          Int
+  user             Users            @relation(fields: [user_id], references: [user_id])
+  category_id      Int
+  category         Categories       @relation(fields: [category_id], references: [category_id])
+  transaction_date DateTime        @default(now()) @db.Timestamp(0)
+  amount           Decimal         @db.Decimal(10, 2)
+  type_id          Int
+  type             TransactionTypes @relation(fields: [type_id], references: [type_id])
+  goal_id          Int?
+  goal             Goals?           @relation(fields: [goal_id], references: [goal_id])
+  title            String          @db.Text
+  is_recurring     Boolean         @default(false)
+}
+
+model Budgets {
+  budget_id    Int     @id @default(autoincrement())
+  user_id      Int     @unique
+  user         Users    @relation(fields: [user_id], references: [user_id])
+  total_amount Decimal @db.Decimal(10, 2)
+  spare_amount Decimal @db.Decimal(10, 2)
 }
