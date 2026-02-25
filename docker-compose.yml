@@ -24,6 +24,8 @@ services:
     environment:
       DATABASE_URL: "postgresql://admin:admin@postgres:5432/budget?schema=public"
       PORT: 3001
+     
+      JWT_SECRET: "1d24213fe12eb70c775191e1ba60004db161e3ce81be0abfe96c9cbd08c5d6dd"
     depends_on:
       - postgres
 
